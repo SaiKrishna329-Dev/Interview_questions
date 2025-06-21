@@ -1,0 +1,4 @@
+1.can we delete the image when the container is running? is there way to do it? if deleted, will the container keeps running?
+2.mutability and immutability in docker?
+3.networking in docker?
+4.
