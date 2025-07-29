@@ -4,3 +4,4 @@
 4.can we make public instance to private instance?
 5. S3 is regional or global? - Regional with global access
 6. different types of policies in autoscaling and parameters for autoscaling? - target tracking, step scaling, scheduled, predective
+ (https://chatgpt.com/share/6888274e-a934-8012-9e76-65977e6f2ba4)
