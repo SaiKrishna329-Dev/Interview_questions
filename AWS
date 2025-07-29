@@ -1,3 +1,6 @@
 1.can we change the private ip of instance either its running or stopped?why ?
 2.what are backend services for lamnda in aws?
 3.just after increasing the disk in aws console for a node will it reflect immediatly?
+4.can we make public instance to private instance?
+5. S3 is regional or global? - Regional with global access
+6. different types of policies in autoscaling and parameters for autoscaling? - target tracking, step scaling, scheduled, predective
