@@ -1,2 +1,5 @@
 1.syntax for enable communication b/w two namespaces in K8s?
 2.how to troubleshoot 403 and 401 error codes, when app is running inside the pod? what they mean and how to troubleshoot?
+3. my desired pods are 5 but actively running pods are 3, how k8s will talk to its componets to match the current with desired state?
+4. how to establish the connection between twwo namespaces?
+5. while upgrading cluster how the k8s will get to know to deploy the pods in the new nodes?
