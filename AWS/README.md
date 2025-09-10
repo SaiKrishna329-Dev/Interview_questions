@@ -146,3 +146,13 @@
 - Content customization, redirects, or WAF rules → CloudFront + Lambda@Edge. - CloudFront automatically gives you the viewer’s country code in the request headers (CloudFront-Viewer-Country).we can use this headers in Lambda@Edge to rewrite URLs or redirect users to country-specific apps.like Users from IN → redirect to /in/index.html
 - Performance-optimized global routing → AWS Global Accelerator - It routes users to the closest healthy AWS endpoint based on geography and health checks.
 
+### 15. what is cloudwatch logs and events?
+
+| Feature   | **CloudWatch Logs**                  | **CloudWatch Events / EventBridge**    |
+| --------- | ------------------------------------ | -------------------------------------- |
+| Purpose   | Store and monitor log data           | Respond to AWS service or app events   |
+| Data Type | Log streams (textual logs, metrics)  | Event messages (JSON)                  |
+| Trigger   | Manual/agent/application writes logs | AWS services emit events automatically |
+| Example   | Error logs, access logs              | “EC2 stopped” → Trigger Lambda         |
+
+
