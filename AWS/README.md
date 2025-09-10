@@ -37,6 +37,7 @@
 - No reboot needed for volume expansion.  
 ### 5. can we make public instance to private instance?
 **Ans:**  Yes
+
 **Option 1:** Remove Public IP
 - Go to EC2 Console → Networking → Manage IP Addresses.
 - Disassociate the Elastic IP (if attached).
