@@ -42,6 +42,7 @@
 - Disassociate the Elastic IP (if attached).
 - If it had an auto-assigned public IP → stop the instance, disable “Auto-assign public IPv4” in the subnet settings, then start it again.
 - Now instance will only have a private IP → private instance.
+
 **Option 2:** Move to a Private Subnet
 - Create/identify a private subnet (only routes to NAT Gateway or internal VPC resources).
 - Stop the instance.
