@@ -4,7 +4,8 @@
  - copy the role ARN (arn:aws:iam::<AccountB_ID>:role/CrossAccountS3AccessRole) 
          
 - attach the IAM policy to the app's IAM role/user as AssumeRole in account B --> run
-  ``` aws sts assume-role \
+  ``` 
+  aws sts assume-role \
     --role-arn arn:aws:iam::<AccountB_ID>:role/CrossAccountS3AccessRole \
     --role-session-name AppAccessS3
     ```
