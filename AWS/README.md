@@ -28,3 +28,19 @@
 - VPC endpoints for services within the AWS services. (like S3, DynamoDB, ECR, SSM, Secrets Manager, etc.),    you can use: Gateway Endpoints (for S3 & DynamoDB),Interface Endpoints (PrivateLink) for other services.
 - forward proxy - keeping proxy in public subnet and tranfer the route to proxy from private and get internet access through proxy.
 - If EC2 only needs package updates or software installs, you can use SSM endpoints.(SSM Agent can download packages through SSM endpoints).
+### 14. how to setup geolocation based routing using AWS services?
+**Ans:** 
+- Simple DNS-based routing (country-level only) → Route 53 Geolocation Routing.
+ ```
+ In Route 53 Hosted Zone, create multiple records for the same domain.
+ Choose Routing Policy → Geolocation.
+ Define location:
+ Continent (e.g., Asia, Europe).
+ Country (e.g., India, US).
+ State (only for US).
+ Point records to different AWS resources (ALBs, CloudFront, EC2, etc.).
+ Add a Default record as fallback.
+```
+- Content customization, redirects, or WAF rules → CloudFront + Lambda@Edge. - CloudFront automatically gives you the viewer’s country code in the request headers (CloudFront-Viewer-Country).we can use this headers in Lambda@Edge to rewrite URLs or redirect users to country-specific apps.like Users from IN → redirect to /in/index.html
+- Performance-optimized global routing → AWS Global Accelerator - It routes users to the closest healthy AWS endpoint based on geography and health checks.
+
