@@ -1,7 +1,7 @@
 ### 1. how to configure app in account A to access S3 in account B?
 **Ans:**
- - create IAM role in account B to access S3 and in that role's trust policy add the account A ID       
- - copy the role ARN (arn:aws:iam::<AccountB_ID>:role/CrossAccountS3AccessRole) 
+- create IAM role in account B to access S3 and in that role's trust policy add the account A ID       
+- copy the role ARN (arn:aws:iam::<AccountB_ID>:role/CrossAccountS3AccessRole) 
          
 - attach the IAM policy to the app's IAM role/user as AssumeRole in account B --> run
   ``` 
@@ -23,3 +23,8 @@
 ### 10. what is default route in your main route table?
 ### 11. vpc peering how to configure and transit gateway?
 ### 12.  how to find and fix unhealthy target group in a ALP?   
+### 13. Alternatives to NAT for Private Subnet Internet Access?
+**Ans:** 
+- VPC endpoints for services within the AWS services. (like S3, DynamoDB, ECR, SSM, Secrets Manager, etc.),    you can use: Gateway Endpoints (for S3 & DynamoDB),Interface Endpoints (PrivateLink) for other services.
+- forward proxy - keeping proxy in public subnet and tranfer the route to proxy from private and get internet access through proxy.
+- If EC2 only needs package updates or software installs, you can use SSM endpoints.(SSM Agent can download packages through SSM endpoints).
