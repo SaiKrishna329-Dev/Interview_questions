@@ -158,4 +158,27 @@
 | Trigger   | Manual/agent/application writes logs | AWS services emit events automatically |
 | Example   | Error logs, access logs              | “EC2 stopped” → Trigger Lambda         |
 
+### 16. Pre-Signed urls in S3?
+**Ans:**
+- A temporary URL generated using AWS credentials that grants time-limited access to an S3 object.
+- Even if the bucket/object is private, you can share this URL so that others can download (GET) or upload (PUT/POST) files without needing AWS credentials.
+```
+# AWS CLI:
+aws s3 presign s3://mybucket/myfile.txt --expires-in 60
+
+# python script:
+import boto3
+import datetime
+
+s3 = boto3.client('s3')
+
+url = s3.generate_presigned_url(
+    ClientMethod='get_object',
+    Params={'Bucket': 'mybucket', 'Key': 'myfile.txt'},
+    ExpiresIn=300  # 5 minutes
+)
+
+print("Download link:", url)
+```
+- secure, temporary, credential-free access to private S3 objects.
 
