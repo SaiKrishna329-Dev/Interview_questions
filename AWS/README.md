@@ -49,14 +49,75 @@
 - Stop the instance.
 - Change its Subnet via “Change Subnet” option or by attaching its ENI to the new subnet.
 - Start instance.
-### 6. S3 is regional or global? - Regional with global access
-### 7. different types of policies in autoscaling and parameters for autoscaling? - target tracking, step scaling, scheduled, predective
+### 6. S3 is regional or global? 
+**Ans:**
+- Regional with global access
+
+| Aspect                    | Type             | Explanation                                         |
+| ------------------------- | ---------------- | --------------------------------------------------- |
+| Data storage              | **Regional**     | You select the region for your bucket.              |
+| Access                    | **Global**       | Accessible from anywhere (if allowed).              |
+| Bucket name uniqueness    | **Global**       | No two buckets in the world can have the same name. |
+| Features like replication | **Cross-region** | Available if configured.                            |
+
+### 7. different types of policies in autoscaling and parameters for autoscaling?
+**Ans:**
+ - target tracking, step scaling, scheduled, predective
+
+ | Policy Type        | Triggers on         | Use Case                        | Complexity |
+| ------------------ | ------------------- | ------------------------------- | ---------- |
+| Target Tracking    | Metric target       | Simple, balanced workloads      | Easy       |
+| Step Scaling       | Threshold + steps   | Custom thresholds and steps     | Medium     |
+| Scheduled Scaling  | Fixed times         | Predictable, time-based traffic | Easy       |
+| Predictive Scaling | Historical patterns | ML-based, anticipates traffic   | Advanced   |
+
  (https://chatgpt.com/share/6888274e-a934-8012-9e76-65977e6f2ba4)
 ### 8. s3 bucket, replication rule and lifecycle rule?
+**Ans:**
+
+| Feature         | Replication Rule                                   | Lifecycle Rule                                     |
+| --------------- | -------------------------------------------------- | -------------------------------------------------- |
+| Purpose         | Copy objects to another bucket                     | Manage object storage class & expiration           |
+| Requirement     | Versioning must be enabled                         | Versioning optional (but useful for version rules) |
+| Scope           | Works across buckets/regions                       | Works within same bucket                           |
+| Common Use Case | Compliance, disaster recovery, multi-region copies | Cost optimization, data archival, auto-deletion    |
+
 ### 9. permission boundary in IAM?
+**Ans:** 
+- A permissions boundary is an IAM policy that sets the maximum allowed permissions for a user or role.
+- Think of it as a fence 🪧 → the user/role can’t cross it, even if another admin tries to give them more permissions.It doesn’t grant permissions by itself — it only limits.
+- uses: Ensure that even if someone attaches AdministratorAccess policy, the boundary stops it. When different teams/apps share an AWS account, boundaries prevent them from stepping on each other’s resources.
 ### 10. what is default route in your main route table?
+**Ans:** 
+- When you create a new VPC, the main route table by default has only one route: 
+ Destination   Target
+------------  --------
+10.0.0.0/16   local
+
+- Destination = VPC CIDR range → all traffic inside the VPC.
+- Target = local → means traffic stays within the VPC (instances, subnets, etc.).
+- This is called the default local route. It cannot be deleted.
+- Ensures all subnets in the VPC can talk to each other by default
 ### 11. vpc peering how to configure and transit gateway?
+**Ans:**
+| Feature            | **VPC Peering**                | **Transit Gateway**                |
+| ------------------ | ------------------------------ | ---------------------------------- |
+| Best for           | Few VPCs, simple mesh          | Many VPCs, hub-and-spoke           |
+| Transitive routing | ❌ No                           | ✅ Yes                              |
+| Cost               | Cheaper (per data transfer)    | More expensive (TGW hourly + data) |
+| Complexity         | Grows in full mesh (N^2 links) | Centralized & scalable             |
+
 ### 12.  how to find and fix unhealthy target group in a ALP?   
+**Ans:**
+- Go to EC2 → Target Groups → [Your TG] → Targets tab.
+- You’ll see each target’s status: healthy, unhealthy, initial, unused, draining.
+**Fix:**
+- Health check port & path correct?
+- Target SG allows ALB inbound traffic?
+- NACL allows traffic both ways?
+- App running & listening?
+- Response code = expected success code?
+- No startup delays / ASG misconfig?
 ### 13. Alternatives to NAT for Private Subnet Internet Access?
 **Ans:** 
 - VPC endpoints for services within the AWS services. (like S3, DynamoDB, ECR, SSM, Secrets Manager, etc.),    you can use: Gateway Endpoints (for S3 & DynamoDB),Interface Endpoints (PrivateLink) for other services.
