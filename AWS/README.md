@@ -182,3 +182,25 @@ print("Download link:", url)
 ```
 - secure, temporary, credential-free access to private S3 objects.
 
+### 17. how to configure a private ec2 instance to fetch the objects from s3 and display in frontend?
+**Ans:**
+**Steps:**
+- S3 Gateway Endpoint - create VPC endpoint for S3 - route traffic internally without NAT or internet
+- If a VPC Endpoint is not used, you need a NAT Gateway in a public subnet - Private EC2 routes traffic 0.0.0.0/0 → NAT → IGW → S3.
+- Create an IAM Role with permissions for S3 (least privilege) - Attach this IAM Role to your EC2 instance- now EC@ able to access the objects from S3.
+- Place your private EC2 behind an Application Load Balancer (ALB) - ALB in a public subnet forwards traffic to EC2 in private subnet - User → ALB (public) → EC2 (private) → S3 (via VPC endpoint).
+
+## 18. what is endpoint? and it types?
+**Ans:**
+| Feature            | Gateway Endpoint           | Interface Endpoint                             | GWLB Endpoint                      |
+| ------------------ | -------------------------- | ---------------------------------------------- | ---------------------------------- |
+| Supported Services | S3, DynamoDB               | Most AWS services + SaaS                       | Security appliances                |
+| Cost               | Free                       | Charged per ENI + data                         | Charged                            |
+| Traffic Routing    | Route Table                | Private IP (ENI)                               | GWLB in path                       |
+| Use Case           | Private S3/DynamoDB access | Private API/SNS/SQS/KMS/Secrets Manager access | Insert firewall/inspection devices |
+
+**Uses**
+- Security: No public internet exposure.
+- Compliance: Keep data in AWS private network.
+- Cost optimization: Avoid NAT Gateway for S3/DynamoDB.
+- Performance: Lower latency (regional access).
