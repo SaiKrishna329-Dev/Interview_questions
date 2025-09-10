@@ -100,6 +100,12 @@
 - Ensures all subnets in the VPC can talk to each other by default
 ### 11. vpc peering how to configure and transit gateway?
 **Ans:**
+**Steps:**
+- Create peering connection - VPC - Peering connections - Requester, Accepter
+- Accept it - If both VPCs are in the same account → Accept from Console.
+- Update route tables - Add routes in each VPC’s route table so that traffic can flow like VPC-A CIDR in VPC-B and vice-versa
+- Update security groups - Add inbound/outbound rules to allow traffic from the peer VPC’s CIDR.
+
 | Feature            | **VPC Peering**                | **Transit Gateway**                |
 | ------------------ | ------------------------------ | ---------------------------------- |
 | Best for           | Few VPCs, simple mesh          | Many VPCs, hub-and-spoke           |
@@ -111,6 +117,7 @@
 **Ans:**
 - Go to EC2 → Target Groups → [Your TG] → Targets tab.
 - You’ll see each target’s status: healthy, unhealthy, initial, unused, draining.
+
 **Fix:**
 - Health check port & path correct?
 - Target SG allows ALB inbound traffic?
