@@ -147,6 +147,9 @@
 - Performance-optimized global routing → AWS Global Accelerator - It routes users to the closest healthy AWS endpoint based on geography and health checks.
 
 ### 15. what is cloudwatch logs and events?
+**Ans:**
+- CloudWatch Logs = "What happened inside the service/app (logs)?"
+- CloudWatch Events = "Something happened in AWS, now react to it."
 
 | Feature   | **CloudWatch Logs**                  | **CloudWatch Events / EventBridge**    |
 | --------- | ------------------------------------ | -------------------------------------- |
