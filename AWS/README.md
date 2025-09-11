@@ -204,3 +204,18 @@ print("Download link:", url)
 - Compliance: Keep data in AWS private network.
 - Cost optimization: Avoid NAT Gateway for S3/DynamoDB.
 - Performance: Lower latency (regional access).
+
+## 19. what is AWS config and Azure Policy?
+**Ans:**
+- A service that records AWS resource configurations and checks against the compliance rules.
+- AWS Config Recorder tracks resource changes (who, what, when).You define Config Rules (managed or custom via Lambda). By default AWS config is a detective(find nono-compliance).
+- Ensures detective + corrective compliance across AWS accounts.
+- Ex: Check if S3 buckets are encrypted, Ensure IAM users have MFA enabled, Validate EC2 instances are of specific types.
+- To enforce, you integrate with:
+    - AWS Config + Systems Manager Automation → auto-remediation.
+    - AWS Service Control Policies (SCPs) in AWS Organizations → preventive guardrails.
+
+**Azure Policy:**
+- You define Policies (rules) and group them into Initiatives.Policies are evaluated continuously against resources.
+- They can audit (detect non-compliance) or deny/deploy (block or fix).
+- Ensures preventive compliance across all Azure accounts (subscriptions).
